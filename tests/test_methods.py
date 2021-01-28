@@ -2,7 +2,7 @@ from numpy.lib.arraysetops import isin
 import sys
 sys.path.append("..")
 import numpy as np
-from DataClass import dataClass
+from dataClass import DataClass
 
 def test_normalize():
     """
@@ -12,7 +12,7 @@ def test_normalize():
     arr = np.array([[1,2],[10,50]])
     mu = arr.mean(axis=0)
     std = arr.std(axis=0)
-    inst = dataClass(arr)
+    inst = DataClass(arr)
     norm_vec = arr - mu
     norm_vec = norm_vec / std
     inst.normalize()
@@ -43,7 +43,7 @@ def test_add_poly_feature():
     """
     arr = np.array([[1,2],[10,50]])
     poly_arr = np.array([[1,2,1,2],[10,50,100,500]])
-    inst = dataClass(arr,['data1','data2'])
+    inst = DataClass(arr,['data1','data2'])
     inst.normalize()
 
     poly1 = [0,0] # square first column

@@ -1,7 +1,6 @@
 import numpy as np
-import pandas as pd
 
-class dataClass:
+class DataClass:
 
     def __init__(self, data=None, labels=None) -> None:
         if data is not None:

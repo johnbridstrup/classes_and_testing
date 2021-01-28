@@ -2,30 +2,30 @@ from numpy.lib.arraysetops import isin
 import sys
 sys.path.append("..")
 import numpy as np
-from DataClass import dataClass
+from dataClass import DataClass
 
 def test_construction_bare():
-    inst = dataClass()
+    inst = DataClass()
     assert not inst.data
 
 def test_construction_array():
     arr = np.array([[1,1],[2,2]])
-    inst = dataClass(arr)
+    inst = DataClass(arr)
     assert isinstance(inst.data, np.ndarray)
 
 def test_construction_list():
     l = [[1,1],[2,2]]
-    inst = dataClass(l)
+    inst = DataClass(l)
     assert isinstance(inst.data, np.ndarray)
 
 def test_index_lookup():
     arr = np.array([[1,1],[2,2]])
-    inst = dataClass(arr)
+    inst = DataClass(arr)
     assert inst[1,1] == 2
 
 def test_slices():
     arr = np.array([[1,1],[2,2]])
-    inst = dataClass(arr)
+    inst = DataClass(arr)
     assert inst[1,:].size == 2
 
 def test_label_basics():
@@ -35,7 +35,7 @@ def test_label_basics():
     dup_labels = ['data1','data2','data1']
     fewer_labels = ['data1','data2']
     more_labels = ['data1','data2','data3','data4']
-    inst = dataClass(arr, labels=labels)
+    inst = DataClass(arr, labels=labels)
     fail = False
     
     errors=[]
@@ -47,28 +47,28 @@ def test_label_basics():
 
     # Check duplicates raises exception
     try:
-        inst = dataClass(arr,labels=dup_labels)
+        inst = DataClass(arr,labels=dup_labels)
         errors.append('Duplicates allowed')
     except IndexError:
         pass
     
     # too few labels
     try:
-        inst = dataClass(arr, labels = fewer_labels)
+        inst = DataClass(arr, labels = fewer_labels)
         errors.append('Too few labels works')
     except IndexError:
         pass
 
     # too few labels
     try:
-        inst = dataClass(arr, labels = fewer_labels)
+        inst = DataClass(arr, labels = fewer_labels)
         errors.append('Too few labels works')
     except IndexError:
         pass
 
     # check too many labels throws error 
     try:
-        inst = dataClass(arr, labels = more_labels)
+        inst = DataClass(arr, labels = more_labels)
         errors.append('Too many labels works')
     except IndexError:
         pass
@@ -85,7 +85,7 @@ def test_labelling_data():
     errors = []
 
     ## Correct functioning first
-    inst = dataClass(arr, labels=labels)
+    inst = DataClass(arr, labels=labels)
 
     # Check that labelling returns a 1D numpy array
     if not isinstance(inst['data1'],np.ndarray):
