@@ -36,7 +36,6 @@ def test_normalize():
 def test_add_poly_feature():
     """
     This method should create polynomial features from un-normalized data.
-    Normalize only the new features (if data is normalized already)
     can take a label or autogenerate one (only if labels already exist).
 
     Method takes tuple of column indices (i, j, k, ...) and creates new feature 

@@ -1,5 +1,4 @@
 from numpy.lib.arraysetops import isin
-import pytest
 import sys
 sys.path.append("..")
 import numpy as np
