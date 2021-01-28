@@ -43,6 +43,7 @@ def test_add_poly_feature():
     by multiplying x_i * x_j * x_k * ...
     """
     arr = np.array([[1,2],[10,50]])
+    poly_arr = np.array([[1,2,1,2],[10,50,100,500]])
     inst = dataClass(arr,['data1','data2'])
     inst.normalize()
 
@@ -54,6 +55,13 @@ def test_add_poly_feature():
     try:
         inst.add_poly_feature(poly1, 'data3')
         inst.add_poly_feature(poly2, 'data4')
+    except Exception as e:
+        errors.append("{}".format(e))
+
+    # Return the new features
+    try:
+        x = inst[:,2]
+        y = inst[:,3]
     except Exception as e:
         errors.append("{}".format(e))
     
