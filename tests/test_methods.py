@@ -47,8 +47,8 @@ def test_add_poly_feature():
     inst = dataClass(arr,['data1','data2'])
     inst.normalize()
 
-    poly1 = (1,1) # square first column
-    poly2 = (1,2) # multiply first and second column
+    poly1 = [0,0] # square first column
+    poly2 = [0,1] # multiply first and second column
 
     errors=[]
 
@@ -56,13 +56,35 @@ def test_add_poly_feature():
         inst.add_poly_feature(poly1, 'data3')
         inst.add_poly_feature(poly2, 'data4')
     except Exception as e:
+        # Any general error
         errors.append("{}".format(e))
 
-    # Return the new features
+    # New columns created
     try:
         x = inst[:,2]
         y = inst[:,3]
+    except:
+        errors.append("Not creating new columns")
+
+    # Check new columns are labeled
+    try:
+        x = inst['data3']
+        y = inst['data4']
     except Exception as e:
-        errors.append("{}".format(e))
+        errors.append("Labels: {}".format(e))
+
+    # Compare new column values to expected
+    value_flag = False
+    try:
+        for i, val in enumerate(inst.data[:,2]):
+            if val != poly_arr[i,2]:
+                value_flag= True
+        for i, val in enumerate(inst.data[:,3]):
+            if val != poly_arr[i,3]:
+                value_flag= True
+        if value_flag:
+            errors.append("Polynomial values incorrect")
+    except Exception as e:
+        errors.append('Values: {}'.format(e))
     
     assert not errors, "errors occured:\t{}".format(errors)

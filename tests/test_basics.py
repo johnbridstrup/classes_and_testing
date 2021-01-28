@@ -5,12 +5,6 @@ sys.path.append("..")
 import numpy as np
 from DataClass import dataClass
 
-def check_1d_array(arr, checkarr):
-    out = True
-    for idx, val in enumerate(arr):
-        if val != checkarr[idx]:
-            out = False
-
 def test_construction_bare():
     inst = dataClass()
     assert not inst.data
