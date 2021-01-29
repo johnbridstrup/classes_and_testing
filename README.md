@@ -1,5 +1,5 @@
 # classes_and_testing
-Practicing making a custom class and running tests
+Practicing TDD by creating a custom class for handling data in numpy arrays
 
 # DataClass
 - take in data from numpy arrays and perform simple operations
