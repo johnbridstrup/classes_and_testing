@@ -2,7 +2,7 @@ from numpy.lib.arraysetops import isin
 import sys
 sys.path.append("..")
 import numpy as np
-from dataClass import DataClass
+from DataClass.dataClass import DataClass
 
 def test_construction_bare():
     inst = DataClass()
